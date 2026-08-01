@@ -113,36 +113,6 @@ body{
 }
 .sidebar-nav a:hover .num{color:var(--gold)}
 
-.sidebar-related{
-  padding:20px 32px;
-  margin:0 0 4px;
-  border-top:1px solid rgba(255,255,255,0.07);
-}
-.sidebar-related .related-label{
-  font-family:var(--sans);
-  font-size:9px;
-  letter-spacing:2.5px;
-  text-transform:uppercase;
-  color:rgba(214,190,160,0.3);
-  display:block;
-  margin-bottom:12px;
-}
-.sidebar-related ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.sidebar-related a{
-  font-family:var(--sans);
-  font-size:11px;
-  letter-spacing:0.6px;
-  color:rgba(214,190,160,0.55);
-  text-decoration:none;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  transition:color 0.2s;
-}
-.sidebar-related a::before{content:'→';color:rgba(201,146,42,0.45);font-size:10px}
-.sidebar-related a:hover{color:var(--gold)}
-.sidebar-related a:hover::before{color:var(--gold)}
-
 .sidebar-footer{
   padding:24px 32px 0;
   border-top:1px solid rgba(255,255,255,0.07);
@@ -884,15 +854,6 @@ footer{
     flex-direction:row;flex:1;padding:0;gap:4px;flex-wrap:wrap;
   }
   .sidebar-nav a{padding:7px 10px;font-size:10px}
-  .sidebar-related{
-    border-top:none;
-    padding:0;
-    margin:0;
-    flex-shrink:0;
-  }
-  .sidebar-related .related-label{display:none}
-  .sidebar-related ul{flex-direction:row;gap:14px;flex-wrap:wrap}
-  .sidebar-related a{font-size:10px}
   .sidebar-footer{display:none}
   .content{margin-left:0}
   .hero{padding:48px 32px 60px;min-height:70vh}
@@ -939,13 +900,6 @@ footer{
     <li><a href="#quickwins"><span class="num">05</span>Quick Wins</a></li>
     <li><a href="#metrics"><span class="num">06</span>Metrics</a></li>
   </ul>
-  <div class="sidebar-related">
-    <span class="related-label">Related pages</span>
-    <ul>
-      <li><a href="../ember-origin/index.html">Landing Page</a></li>
-      <li><a href="../competitive-analysis/index.html">Competitive Analysis</a></li>
-    </ul>
-  </div>
   <div class="sidebar-footer">
     <p>"Single-origin,<br>small-batch,<br>roasted with intention."</p>
   </div>
