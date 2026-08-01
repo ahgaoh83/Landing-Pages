@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Competitive Gap Analysis — Ember &amp; Origin vs. Blue Bottle, Stumptown &amp; Counter Culture</title>
+<meta name="description" content="Where the three dominant specialty coffee DTC brands fall short on farmer identity and human provenance — and the white space that leaves for Ember &amp; Origin's story card."/>
+<meta property="og:title" content="Competitive Gap Analysis — Ember &amp; Origin"/>
+<meta property="og:description" content="None of the three leading specialty roasters lead with farmer identity at the product level. That gap is the whole strategy."/>
+<meta property="og:type" content="article"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════ RESET & TOKENS ═══════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --espresso:   #130A04;
+  --dark-roast: #1E0F06;
+  --mahogany:   #3A1F0D;
+  --terracotta: #C05A2A;
+  --ochre:      #C9922A;
+  --gold:       #D4A84B;
+  --sienna:     #8B4513;
+  --parchment:  #F6EFE3;
+  --cream:      #FDFAF5;
+  --linen:      #F0E8D8;
+  --mist:       #E8DFD0;
+  --ink:        #1A0C04;
+  --body:       #2C1608;
+  --muted:      #7A5540;
+  --border:     #D9CBBA;
+  --serif:      'Playfair Display', Georgia, serif;
+  --sans:       'DM Sans', 'Helvetica Neue', sans-serif;
+  --maxw:       1180px;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--body);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+
+.eyebrow{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--terracotta);
+  margin-bottom:18px;
+}
+.on-dark .eyebrow{color:var(--gold)}
+
+h2.section-title{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(1.9rem,4vw,2.9rem);
+  line-height:1.16;
+  letter-spacing:-0.5px;
+  color:var(--ink);
+  margin-bottom:16px;
+}
+h2.section-title em{font-style:italic;color:var(--terracotta)}
+.section-sub{
+  font-size:1.02rem;
+  color:var(--muted);
+  max-width:640px;
+  margin-bottom:52px;
+}
+.on-dark h2.section-title{color:var(--parchment)}
+.on-dark h2.section-title em{color:var(--gold)}
+.on-dark .section-sub{color:rgba(214,190,160,0.62)}
+
+section.band{padding:96px 0}
+.band.cream{background:var(--cream)}
+.band.parchment{background:var(--parchment)}
+.band.linen{background:var(--linen)}
+.band.dark{background:var(--dark-roast)}
+.band.espresso{background:var(--espresso)}
+
+/* ═══════════════════════ HEADER ═══════════════════════ */
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(19,10,4,0.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:16px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.wordmark{
+  font-family:var(--serif);
+  font-size:1.22rem;
+  font-weight:600;
+  color:var(--parchment);
+  letter-spacing:-0.3px;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.wordmark em{color:var(--gold);font-style:italic}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:rgba(214,190,160,0.6);
+  text-decoration:none;
+  transition:color .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+
+/* ═══════════════════════ HERO ═══════════════════════ */
+.hero{
+  background:
+    radial-gradient(ellipse at 82% 20%, rgba(192,90,42,0.20), transparent 58%),
+    radial-gradient(ellipse at 10% 90%, rgba(201,146,42,0.12), transparent 55%),
+    var(--espresso);
+  color:var(--parchment);
+  padding:92px 0 88px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(rgba(246,239,227,0.045) 1px, transparent 1px);
+  background-size:22px 22px;
+  pointer-events:none;
+}
+.hero .wrap{position:relative;z-index:1}
+.hero-label{
+  font-size:10px;
+  letter-spacing:3.2px;
+  text-transform:uppercase;
+  color:rgba(214,190,160,0.5);
+  margin-bottom:24px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.hero-label::before{content:"";width:34px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(2.5rem,5.4vw,4.2rem);
+  line-height:1.07;
+  letter-spacing:-1.4px;
+  margin-bottom:24px;
+  max-width:820px;
+}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero-lede{
+  font-size:1.08rem;
+  color:rgba(246,239,227,0.72);
+  max-width:640px;
+  font-weight:300;
+  margin-bottom:44px;
+}
+.hero-meta{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:24px 28px;
+  padding-top:30px;
+  border-top:1px solid rgba(255,255,255,0.09);
+  max-width:900px;
+}
+.hero-meta .k{
+  display:block;
+  font-size:9px;
+  letter-spacing:2.2px;
+  text-transform:uppercase;
+  color:rgba(214,190,160,0.4);
+  margin-bottom:5px;
+}
+.hero-meta .v{font-size:13px;color:rgba(214,190,160,0.8)}
+
+/* ═══════════════════════ CORE FINDING ═══════════════════════ */
+.finding{
+  background:rgba(201,146,42,0.09);
+  border-left:3px solid var(--gold);
+  padding:34px 40px;
+  border-radius:0 2px 2px 0;
+  max-width:900px;
+  margin-bottom:56px;
+}
+.finding .k{
+  font-size:10px;
+  letter-spacing:2.6px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  display:block;
+  margin-bottom:12px;
+}
+.finding p{
+  font-family:var(--serif);
+  font-size:1.16rem;
+  line-height:1.68;
+  color:var(--parchment);
+}
+.finding p em{color:var(--gold);font-style:italic}
+
+/* ═══════════════════════ MATRIX ═══════════════════════ */
+.legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px 22px;
+  margin-bottom:22px;
+}
+.legend span{
+  font-size:10px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:rgba(246,239,227,0.45);
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.legend i{width:9px;height:9px;border-radius:1px;display:inline-block}
+
+.matrix-wrap{
+  overflow-x:auto;
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:2px;
+  -webkit-overflow-scrolling:touch;
+}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;min-width:820px}
+caption{
+  caption-side:top;
+  text-align:left;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(246,239,227,0.35);
+  padding:0 0 12px;
+}
+thead tr{background:rgba(0,0,0,0.32)}
+thead th{
+  padding:16px 20px;
+  text-align:left;
+  font-size:9px;
+  letter-spacing:2.4px;
+  text-transform:uppercase;
+  font-weight:500;
+  color:rgba(246,239,227,0.45);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  white-space:nowrap;
+}
+thead th.ember-col{color:var(--gold)}
+tbody tr{border-bottom:1px solid rgba(255,255,255,0.05)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,0.028)}
+tbody th[scope="row"]{
+  padding:15px 20px;
+  text-align:left;
+  font-weight:500;
+  color:rgba(246,239,227,0.9);
+  font-size:0.85rem;
+}
+tbody td{padding:15px 20px;vertical-align:middle;color:rgba(246,239,227,0.7)}
+tbody td.ember-col{background:rgba(212,168,75,0.06)}
+tr.hero-row td,tr.hero-row th[scope="row"]{background:rgba(212,168,75,0.09)}
+tr.hero-row th[scope="row"]{color:var(--gold)}
+
+.badge{
+  display:inline-block;
+  padding:4px 11px;
+  border-radius:1px;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:0.3px;
+  white-space:nowrap;
+}
+.badge-none{background:rgba(220,50,50,0.15);color:#ff8a80}
+.badge-partial{background:rgba(255,165,0,0.12);color:#ffb74d}
+.badge-strong{background:rgba(76,175,80,0.12);color:#81c784}
+.badge-gold{background:rgba(212,168,75,0.18);color:var(--gold);font-weight:600}
+.badge-opp{background:rgba(100,149,237,0.12);color:#90caf9}
+
+.scroll-hint{
+  font-size:11px;
+  letter-spacing:1.2px;
+  color:rgba(246,239,227,0.32);
+  margin-top:14px;
+  display:none;
+}
+
+/* ═══════════════════════ COMPETITOR PROFILES ═══════════════════════ */
+.profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.profile{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-top:2px solid var(--terracotta);
+  display:flex;
+  flex-direction:column;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.profile:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(58,31,13,0.11)}
+.profile-head{padding:30px 28px 22px;border-bottom:1px solid var(--border)}
+.profile-head h3{
+  font-family:var(--serif);
+  font-size:1.5rem;
+  font-weight:600;
+  color:var(--ink);
+  line-height:1.2;
+  margin-bottom:8px;
+}
+.profile-head .archetype{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:0.98rem;
+  color:var(--terracotta);
+}
+.profile-body{padding:26px 28px 30px;display:flex;flex-direction:column;gap:22px;flex:1}
+.pblock .k{
+  font-size:9px;
+  letter-spacing:2.2px;
+  text-transform:uppercase;
+  font-weight:600;
+  display:block;
+  margin-bottom:8px;
+}
+.pblock.strength .k{color:#4e7f52}
+.pblock.gap .k{color:#b0472c}
+.pblock.take .k{color:var(--sienna)}
+.pblock p{font-size:0.9rem;color:var(--muted);line-height:1.7}
+.pblock.take{
+  margin-top:auto;
+  padding:16px 18px;
+  background:rgba(192,90,42,0.06);
+  border-left:2px solid var(--terracotta);
+}
+.pblock.take p{color:var(--body)}
+
+/* ═══════════════════════ WHITE SPACE ═══════════════════════ */
+.whitespace{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-bottom:52px}
+.ws{
+  border:1px solid rgba(246,239,227,0.14);
+  background:rgba(246,239,227,0.03);
+  padding:32px 28px;
+}
+.ws .num{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:2rem;
+  color:rgba(212,168,75,0.4);
+  line-height:1;
+  margin-bottom:16px;
+}
+.ws h3{
+  font-family:var(--serif);
+  font-size:1.24rem;
+  font-weight:600;
+  color:var(--parchment);
+  margin-bottom:10px;
+  line-height:1.3;
+}
+.ws p{font-size:0.92rem;color:rgba(246,239,227,0.6);font-weight:300}
+
+.verdict{
+  border-top:1px solid rgba(246,239,227,0.14);
+  padding-top:44px;
+  max-width:820px;
+}
+.verdict p{
+  font-family:var(--serif);
+  font-size:clamp(1.15rem,2.2vw,1.6rem);
+  line-height:1.55;
+  color:var(--parchment);
+}
+.verdict p em{color:var(--gold);font-style:italic}
+
+/* ═══════════════════════ OPPORTUNITY BACKLOG ═══════════════════════ */
+.backlog{border:1px solid var(--border);background:var(--cream)}
+.b-row{
+  display:grid;
+  grid-template-columns:44px 1.1fr 2fr 130px;
+  gap:24px;
+  align-items:start;
+  padding:24px 28px;
+  border-bottom:1px solid var(--border);
+}
+.b-row:last-child{border-bottom:none}
+.b-row .n{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.3rem;
+  color:rgba(192,90,42,0.45);
+  line-height:1.4;
+}
+.b-row .t{
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-weight:600;
+  color:var(--ink);
+  line-height:1.35;
+}
+.b-row .t small{
+  display:block;
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:400;
+  margin-top:6px;
+}
+.b-row .d{font-size:0.92rem;color:var(--muted)}
+.pill{
+  justify-self:start;
+  padding:5px 12px;
+  border-radius:1px;
+  font-size:9.5px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  font-weight:600;
+  white-space:nowrap;
+}
+.pill-now{background:rgba(192,90,42,0.14);color:#a94a20}
+.pill-next{background:rgba(201,146,42,0.16);color:#8a6212}
+.pill-later{background:rgba(122,85,64,0.12);color:var(--muted)}
+
+/* ═══════════════════════ VOICE ═══════════════════════ */
+.voices{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.voice{background:var(--parchment);padding:30px 26px}
+.voice.ours{background:var(--espresso)}
+.voice .who{
+  font-size:9px;
+  letter-spacing:2.2px;
+  text-transform:uppercase;
+  color:var(--terracotta);
+  font-weight:600;
+  margin-bottom:12px;
+}
+.voice.ours .who{color:var(--gold)}
+.voice p{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.02rem;
+  line-height:1.6;
+  color:var(--body);
+}
+.voice.ours p{color:var(--parchment)}
+
+/* ═══════════════════════ FOOTER ═══════════════════════ */
+footer{
+  background:var(--espresso);
+  color:rgba(214,190,160,0.5);
+  padding:52px 0 36px;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:28px;
+  flex-wrap:wrap;
+}
+.foot .wordmark{font-size:1.4rem;display:block;margin-bottom:10px}
+.foot p{font-size:0.88rem;max-width:340px;font-weight:300}
+.foot-meta{
+  font-size:10px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  color:rgba(246,239,227,0.28);
+  text-align:right;
+  line-height:1.9;
+}
+
+/* ═══════════════════════ RESPONSIVE ═══════════════════════ */
+@media (max-width:1020px){
+  .nav-links{display:none}
+  .profiles,.whitespace{grid-template-columns:1fr}
+  .voices{grid-template-columns:1fr 1fr}
+  .b-row{grid-template-columns:36px 1fr;gap:8px 18px}
+  .b-row .d{grid-column:2}
+  .b-row .pill{grid-column:2}
+  .scroll-hint{display:block}
+}
+@media (max-width:680px){
+  .wrap{padding:0 22px}
+  section.band{padding:66px 0}
+  .hero{padding:64px 0 68px}
+  .finding{padding:26px 24px}
+  .voices{grid-template-columns:1fr}
+  .foot{flex-direction:column;align-items:flex-start}
+  .foot-meta{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <nav class="nav" aria-label="Primary">
+    <a class="wordmark" href="../ember-origin/index.html">Ember &amp; <em>Origin</em></a>
+    <ul class="nav-links">
+      <li><a href="#finding">Core Finding</a></li>
+      <li><a href="#matrix">Matrix</a></li>
+      <li><a href="#profiles">Competitors</a></li>
+      <li><a href="#whitespace">White Space</a></li>
+      <li><a href="#backlog">Backlog</a></li>
+      <li><a href="../ember-origin/index.html">Landing Page</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-label">Section 02 · Marketing Action Plan</div>
+    <h1>Nobody in specialty coffee <em>names the farmer.</em></h1>
+    <p class="hero-lede">
+      A gap analysis of the three dominant specialty coffee DTC brands — Blue Bottle, Stumptown,
+      and Counter Culture — across eight dimensions of positioning, commerce, and community.
+      The conclusion is narrower and more useful than "differentiate": one specific piece of
+      territory is sitting unclaimed.
+    </p>
+    <div class="hero-meta">
+      <div><span class="k">Brands assessed</span><span class="v">Blue Bottle · Stumptown · Counter Culture</span></div>
+      <div><span class="k">Dimensions</span><span class="v">8 · positioning to loyalty</span></div>
+      <div><span class="k">Uncontested territory</span><span class="v">Farmer identity at product level</span></div>
+      <div><span class="k">Source</span><span class="v">Marketing Action Plan, April 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CORE FINDING + MATRIX ═══════════ -->
+<section class="band dark on-dark" id="finding">
+  <div class="wrap">
+    <div class="eyebrow">The Finding</div>
+    <h2 class="section-title">Sustainability is claimed broadly. It is <em>never personalized.</em></h2>
+    <p class="section-sub">
+      Every competitor talks about sourcing. None of them tell you who did the sourcing from,
+      by name, on the thing you actually hold.
+    </p>
+
+    <div class="finding">
+      <span class="k">Core finding</span>
+      <p>
+        None of the three competitors — Blue Bottle, Stumptown, or Counter Culture — lead with
+        farmer identity or human provenance at the product level. Sustainability is claimed broadly
+        but never personalized. <em>The story card is Ember &amp; Origin's uncontested territory.</em>
+      </p>
+    </div>
+
+    <div id="matrix">
+      <div class="legend" aria-hidden="true">
+        <span><i class="badge-none" style="background:rgba(220,50,50,0.5)"></i>Absent</span>
+        <span><i class="badge-partial" style="background:rgba(255,165,0,0.5)"></i>Partial</span>
+        <span><i class="badge-strong" style="background:rgba(76,175,80,0.5)"></i>Strong</span>
+        <span><i class="badge-opp" style="background:rgba(100,149,237,0.5)"></i>Our opportunity</span>
+        <span><i class="badge-gold" style="background:rgba(212,168,75,0.7)"></i>Our advantage</span>
+      </div>
+
+      <div class="matrix-wrap" tabindex="0" role="region" aria-label="Competitive comparison matrix, scrollable">
+        <table>
+          <caption>Eight dimensions · shaded column is Ember &amp; Origin</caption>
+          <thead>
+            <tr>
+              <th scope="col">Dimension</th>
+              <th scope="col">Blue Bottle</th>
+              <th scope="col">Stumptown</th>
+              <th scope="col">Counter Culture</th>
+              <th scope="col" class="ember-col">Ember &amp; Origin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hero-row">
+              <th scope="row">Farmer storytelling</th>
+              <td><span class="badge badge-none">None</span></td>
+              <td><span class="badge badge-none">None</span></td>
+              <td><span class="badge badge-partial">Origin pages only</span></td>
+              <td class="ember-col"><span class="badge badge-gold">Every bag — story card</span></td>
+            </tr>
+            <tr class="hero-row">
+              <th scope="row">Human / farmer identity</th>
+              <td><span class="badge badge-none">None</span></td>
+              <td><span class="badge badge-none">None</span></td>
+              <td><span class="badge badge-none">None</span></td>
+              <td class="ember-col"><span class="badge badge-gold">Core differentiator</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Subscription focus</th>
+              <td><span class="badge badge-strong">Central CTA</span></td>
+              <td><span class="badge badge-strong">Multi-category</span></td>
+              <td><span class="badge badge-partial">Secondary</span></td>
+              <td class="ember-col"><span class="badge badge-opp">Opportunity</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Product discovery quiz</th>
+              <td><span class="badge badge-none">None</span></td>
+              <td><span class="badge badge-strong">Coffee Quiz</span></td>
+              <td><span class="badge badge-strong">Coffee Quiz</span></td>
+              <td class="ember-col"><span class="badge badge-opp">Build one</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Promotions / discounts</th>
+              <td><span class="badge badge-none">Rare</span></td>
+              <td><span class="badge badge-partial">Occasional</span></td>
+              <td><span class="badge badge-strong">Prominent</span></td>
+              <td class="ember-col"><span class="badge badge-gold">Avoid — protect premium</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Social proof</th>
+              <td><span class="badge badge-none">Minimal</span></td>
+              <td><span class="badge badge-partial">Moderate</span></td>
+              <td><span class="badge badge-strong">Homepage hero</span></td>
+              <td class="ember-col"><span class="badge badge-opp">Build via UGC</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Loyalty program</th>
+              <td><span class="badge badge-strong">Membership</span></td>
+              <td><span class="badge badge-none">Not visible</span></td>
+              <td><span class="badge badge-strong">Earn Points</span></td>
+              <td class="ember-col"><span class="badge badge-opp">Future phase</span></td>
+            </tr>
+            <tr>
+              <th scope="row">In-shop education</th>
+              <td><span class="badge badge-partial">Separate guides</span></td>
+              <td><span class="badge badge-strong">Embedded long-form</span></td>
+              <td><span class="badge badge-strong">Embedded</span></td>
+              <td class="ember-col"><span class="badge badge-gold">Story cards + blog</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">↔ Scroll the table sideways to see all four brands.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COMPETITOR PROFILES ═══════════ -->
+<section class="band parchment" id="profiles">
+  <div class="wrap">
+    <div class="eyebrow">Brand by Brand</div>
+    <h2 class="section-title">Three strong operators, one <em>shared blind spot</em></h2>
+    <p class="section-sub">
+      Each of these brands is genuinely good at something Ember &amp; Origin is not yet good at.
+      Read each profile as both a threat and a borrowable tactic.
+    </p>
+
+    <div class="profiles">
+
+      <article class="profile">
+        <div class="profile-head">
+          <h3>Blue Bottle</h3>
+          <div class="archetype">The cold editorial</div>
+        </div>
+        <div class="profile-body">
+          <div class="pblock strength">
+            <span class="k">Where they're strong</span>
+            <p>Subscription is the central call to action, backed by a membership loyalty program. They almost never discount, which protects a genuinely premium price position.</p>
+          </div>
+          <div class="pblock gap">
+            <span class="k">Where they're exposed</span>
+            <p>No farmer storytelling, no human identity anywhere in the product experience, minimal social proof, and no discovery quiz. Education is parked in separate guides rather than sitting where people are shopping.</p>
+          </div>
+          <div class="pblock take">
+            <span class="k">What we take</span>
+            <p>Their discipline on discounting. Their subscription-first architecture — without the editorial coldness.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="profile">
+        <div class="profile-head">
+          <h3>Stumptown</h3>
+          <div class="archetype">The retro-quirky irreverent</div>
+        </div>
+        <div class="profile-body">
+          <div class="pblock strength">
+            <span class="k">Where they're strong</span>
+            <p>A multi-category subscription and a working Coffee Quiz for product discovery. Education is embedded as long-form content in the shopping experience rather than bolted on.</p>
+          </div>
+          <div class="pblock gap">
+            <span class="k">Where they're exposed</span>
+            <p>No farmer storytelling and no human identity at all. Social proof is only moderate, and there's no visible loyalty program — so repeat purchase rests entirely on brand affection.</p>
+          </div>
+          <div class="pblock take">
+            <span class="k">What we take</span>
+            <p>The quiz mechanic and embedded education — repointed at origin and farmer rather than at flavor preference alone.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="profile">
+        <div class="profile-head">
+          <h3>Counter Culture</h3>
+          <div class="archetype">The promotion-first urgency</div>
+        </div>
+        <div class="profile-body">
+          <div class="pblock strength">
+            <span class="k">Where they're strong</span>
+            <p>The most complete commerce stack of the three: a Coffee Quiz, an Earn Points loyalty program, embedded education, and social proof promoted all the way to the homepage hero.</p>
+          </div>
+          <div class="pblock gap">
+            <span class="k">Where they're exposed</span>
+            <p>Farmer storytelling exists only on origin pages, never at the product level, and human identity is absent. Prominent promotions steadily erode the premium they're asking customers to pay.</p>
+          </div>
+          <div class="pblock take">
+            <span class="k">What we take</span>
+            <p>Social proof promoted to the homepage — sourced from #EmberStoryCard UGC rather than from review-count badges.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHITE SPACE ═══════════ -->
+<section class="band dark on-dark" id="whitespace">
+  <div class="wrap">
+    <div class="eyebrow">The White Space</div>
+    <h2 class="section-title">What's actually <em>unclaimed</em></h2>
+    <p class="section-sub">
+      Three dimensions where the competitive set scores zero and Ember &amp; Origin can score highest —
+      all three enabled by the same physical object.
+    </p>
+
+    <div class="whitespace">
+      <article class="ws">
+        <div class="num">I</div>
+        <h3>Farmer storytelling on the product itself</h3>
+        <p>Counter Culture manages it on origin pages; Blue Bottle and Stumptown not at all. Nobody puts a name on the bag. The story card makes this structural rather than a campaign.</p>
+      </article>
+      <article class="ws">
+        <div class="num">II</div>
+        <h3>Human identity as the brand's organizing idea</h3>
+        <p>All three score zero. This isn't a feature they've deprioritized — it's a category-wide blind spot, which means it can be owned rather than merely competed on.</p>
+      </article>
+      <article class="ws">
+        <div class="num">III</div>
+        <h3>Education that ships in the box</h3>
+        <p>Competitors treat education as web content. The story card puts it in the customer's hands at the moment of use — and makes it photographable, which web content never is.</p>
+      </article>
+    </div>
+
+    <div class="verdict">
+      <p>
+        The strategic read: don't try to out-commerce Counter Culture or out-restrain Blue Bottle.
+        <em>Win the dimension all three left empty</em> — and let the story card carry the quiz,
+        the social proof, and the subscription pitch along with it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ OPPORTUNITY BACKLOG ═══════════ -->
+<section class="band cream" id="backlog">
+  <div class="wrap">
+    <div class="eyebrow">What To Do About It</div>
+    <h2 class="section-title">The gaps, turned into a <em>sequenced backlog</em></h2>
+    <p class="section-sub">
+      Every "opportunity" and "build one" cell in the matrix, ordered by how much it compounds
+      the story card advantage rather than by how hard it is.
+    </p>
+
+    <div class="backlog">
+
+      <div class="b-row">
+        <div class="n">01</div>
+        <div class="t">Farmer-tagged product pages<small>Farmer storytelling</small></div>
+        <div class="d">Replace generic origin notes with a named farmer profile below Add to Cart — photo, cooperative, coordinates, quote. This is the one dimension no competitor occupies at product level.</div>
+        <div class="pill pill-now">Do now</div>
+      </div>
+
+      <div class="b-row">
+        <div class="n">02</div>
+        <div class="t">#EmberStoryCard UGC loop<small>Social proof</small></div>
+        <div class="d">Counter Culture proves homepage social proof works. Ours should be customer photographs of story cards, not review counts — a form of proof the others structurally cannot produce.</div>
+        <div class="pill pill-now">Do now</div>
+      </div>
+
+      <div class="b-row">
+        <div class="n">03</div>
+        <div class="t">Subscription as the primary CTA<small>Subscription focus</small></div>
+        <div class="d">Blue Bottle and Stumptown both lead with it; we currently don't. Frame it as a relationship rather than a replenishment: a new farmer, a new region, a new story each month.</div>
+        <div class="pill pill-next">Next</div>
+      </div>
+
+      <div class="b-row">
+        <div class="n">04</div>
+        <div class="t">Origin discovery quiz<small>Product discovery</small></div>
+        <div class="d">Two of three competitors run one and it's table stakes for DTC coffee. Differentiate by matching people to a farmer and a place, not just to a roast level.</div>
+        <div class="pill pill-next">Next</div>
+      </div>
+
+      <div class="b-row">
+        <div class="n">05</div>
+        <div class="t">Loyalty program<small>Retention</small></div>
+        <div class="d">Blue Bottle and Counter Culture both have one. Defer until subscription volume justifies it — and design it around collecting story cards rather than accumulating points.</div>
+        <div class="pill pill-later">Later</div>
+      </div>
+
+      <div class="b-row">
+        <div class="n">06</div>
+        <div class="t">Hold the line on discounting<small>Price integrity</small></div>
+        <div class="d">Not a build — a constraint. Counter Culture's prominent promotions are the cautionary case. Targeted rewards for UGC, never broad discounts that quietly come out of a farmer's price.</div>
+        <div class="pill pill-later">Ongoing</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ VOICE ═══════════ -->
+<section class="band linen">
+  <div class="wrap">
+    <div class="eyebrow">Tonal Positioning</div>
+    <h2 class="section-title">Three voices to <em>not</em> sound like</h2>
+    <p class="section-sub">
+      Differentiation is also a matter of register. Each competitor has a recognizable tone —
+      and each one is a trap Ember &amp; Origin can fall into by accident.
+    </p>
+
+    <div class="voices">
+      <div class="voice">
+        <div class="who">Blue Bottle</div>
+        <p>Cold editorial silence.</p>
+      </div>
+      <div class="voice">
+        <div class="who">Counter Culture</div>
+        <p>Promotion-first urgency.</p>
+      </div>
+      <div class="voice">
+        <div class="who">Stumptown</div>
+        <p>Retro-quirky irreverence.</p>
+      </div>
+      <div class="voice ours">
+        <div class="who">Ember &amp; Origin</div>
+        <p>Warm, specific, and human — always.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="wordmark" href="../ember-origin/index.html">Ember &amp; <em>Origin</em></a>
+      <p>Competitive gap analysis — Section 02 of the Ember &amp; Origin Marketing Action Plan.</p>
+    </div>
+    <div class="foot-meta">
+      Marketing Action Plan · April 2026<br>
+      Based on competitive analysis of<br>
+      Blue Bottle, Stumptown &amp; Counter Culture
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -9,6 +9,10 @@ browser to view it.
 | Page | Folder | Description |
 | --- | --- | --- |
 | Ember & Origin | [`ember-origin/`](ember-origin/index.html) | Landing page for a specialty coffee roaster whose differentiator is a "story card" naming the farmer behind every bag. Built from the Ember & Origin marketing action plan (positioning, brand pillars, voice, and subscription messaging). |
+| Competitive Gap Analysis | [`competitive-analysis/`](competitive-analysis/index.html) | Internal strategy page: Ember & Origin vs. Blue Bottle, Stumptown, and Counter Culture across eight dimensions. Comparison matrix, per-competitor profiles, white-space findings, and a sequenced opportunity backlog. Built from Section 02 of the same plan. |
+
+> **Note:** `competitive-analysis/` is an internal-facing document, not customer-facing marketing.
+> If this repo is ever served publicly (e.g. GitHub Pages), consider whether that page should ship with it.
 
 ## Conventions
 
