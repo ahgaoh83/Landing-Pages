@@ -10,9 +10,19 @@ browser to view it.
 | --- | --- | --- |
 | Ember & Origin | [`ember-origin/`](ember-origin/index.html) | Landing page for a specialty coffee roaster whose differentiator is a "story card" naming the farmer behind every bag. Built from the Ember & Origin marketing action plan (positioning, brand pillars, voice, and subscription messaging). |
 | Competitive Gap Analysis | [`competitive-analysis/`](competitive-analysis/index.html) | Internal strategy page: Ember & Origin vs. Blue Bottle, Stumptown, and Counter Culture across eight dimensions. Comparison matrix, per-competitor profiles, white-space findings, and a sequenced opportunity backlog. Built from Section 02 of the same plan. |
+| Marketing Action Plan | [`marketing-plan/`](marketing-plan/index.html) | The full six-section strategy document the other two pages are derived from: positioning, competitive gap, a 4-week content calendar, five acquisition strategies, three quick wins, and 30-day success metrics. |
 
-> **Note:** `competitive-analysis/` is an internal-facing document, not customer-facing marketing.
-> If this repo is ever served publicly (e.g. GitHub Pages), consider whether that page should ship with it.
+> **Note:** `competitive-analysis/` and `marketing-plan/` are internal-facing documents, not customer-facing
+> marketing. If this repo is ever served publicly (e.g. GitHub Pages), consider whether those pages should
+> ship with it.
+
+## Provenance
+
+`marketing-plan/index.html` is the original source document, added essentially verbatim. The only changes:
+
+- A "Related pages" block in the sidebar linking to the other two pages.
+- A one-line mobile fix — `body { flex-direction: column }` under 900px, without which the
+  full-width sidebar pushed the content column ~116px off-screen on phones.
 
 ## Conventions
 

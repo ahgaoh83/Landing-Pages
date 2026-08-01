@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ember & Origin — Marketing Action Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════ RESET & TOKENS ═══════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --espresso:   #130A04;
+  --dark-roast: #1E0F06;
+  --mahogany:   #3A1F0D;
+  --terracotta: #C05A2A;
+  --ochre:      #C9922A;
+  --gold:       #D4A84B;
+  --sienna:     #8B4513;
+  --parchment:  #F6EFE3;
+  --cream:      #FDFAF5;
+  --linen:      #F0E8D8;
+  --mist:       #E8DFD0;
+  --ink:        #1A0C04;
+  --body:       #2C1608;
+  --muted:      #7A5540;
+  --border:     #D9CBBA;
+  --sidebar-w:  270px;
+  --serif:      'Playfair Display', Georgia, serif;
+  --sans:       'DM Sans', 'Helvetica Neue', sans-serif;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--body);
+  line-height:1.7;
+  display:flex;
+  min-height:100vh;
+}
+
+/* ═══════════════════════════ SIDEBAR ═══════════════════════════ */
+.sidebar{
+  width:var(--sidebar-w);
+  min-width:var(--sidebar-w);
+  background:var(--espresso);
+  position:fixed;
+  top:0;left:0;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding:48px 0 36px;
+  z-index:200;
+  border-right:1px solid rgba(255,255,255,0.04);
+}
+
+.sidebar-brand{
+  padding:0 32px 40px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  margin-bottom:36px;
+}
+.sidebar-brand .wordmark{
+  font-family:var(--serif);
+  font-size:1.4rem;
+  font-weight:600;
+  color:var(--parchment);
+  line-height:1.2;
+  letter-spacing:-0.3px;
+  display:block;
+  margin-bottom:6px;
+}
+.sidebar-brand .wordmark em{color:var(--gold);font-style:italic}
+.sidebar-brand .sub{
+  font-size:10px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:rgba(214,190,160,0.45);
+  font-family:var(--sans);
+}
+
+.sidebar-nav{
+  flex:1;
+  padding:0 20px;
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.sidebar-nav a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 12px;
+  border-radius:6px;
+  text-decoration:none;
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+  color:rgba(214,190,160,0.55);
+  transition:background 0.2s,color 0.2s;
+}
+.sidebar-nav a:hover{background:rgba(255,255,255,0.06);color:var(--gold)}
+.sidebar-nav a .num{
+  font-family:var(--serif);
+  font-size:11px;
+  font-style:italic;
+  color:rgba(201,146,42,0.4);
+  min-width:18px;
+}
+.sidebar-nav a:hover .num{color:var(--gold)}
+
+.sidebar-related{
+  padding:20px 32px;
+  margin:0 0 4px;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.sidebar-related .related-label{
+  font-family:var(--sans);
+  font-size:9px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:rgba(214,190,160,0.3);
+  display:block;
+  margin-bottom:12px;
+}
+.sidebar-related ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.sidebar-related a{
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:0.6px;
+  color:rgba(214,190,160,0.55);
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  transition:color 0.2s;
+}
+.sidebar-related a::before{content:'→';color:rgba(201,146,42,0.45);font-size:10px}
+.sidebar-related a:hover{color:var(--gold)}
+.sidebar-related a:hover::before{color:var(--gold)}
+
+.sidebar-footer{
+  padding:24px 32px 0;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.sidebar-footer p{
+  font-family:var(--serif);
+  font-size:11px;
+  font-style:italic;
+  color:rgba(214,190,160,0.3);
+  line-height:1.6;
+}
+
+/* ═══════════════════════════ MAIN CONTENT ═══════════════════════════ */
+.content{
+  margin-left:var(--sidebar-w);
+  flex:1;
+  min-width:0;
+}
+
+/* ═══════════════════════════ HERO ═══════════════════════════ */
+.hero{
+  background:var(--dark-roast);
+  min-height:92vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:0 80px 80px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* grain texture overlay */
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  opacity:0.6;
+  pointer-events:none;
+}
+
+/* decorative circle */
+.hero::after{
+  content:'';
+  position:absolute;
+  right:-180px;top:-180px;
+  width:600px;height:600px;
+  border-radius:50%;
+  border:1px solid rgba(201,146,42,0.08);
+  box-shadow:0 0 0 80px rgba(201,146,42,0.03), 0 0 0 160px rgba(201,146,42,0.015);
+}
+
+.hero-plan-label{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:32px;
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.hero-plan-label::before{
+  content:'';
+  display:block;
+  width:40px;height:1px;
+  background:var(--gold);
+  opacity:0.5;
+}
+
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(3.5rem, 7vw, 6rem);
+  font-weight:400;
+  color:var(--parchment);
+  line-height:1.05;
+  letter-spacing:-1px;
+  position:relative;
+  z-index:1;
+  max-width:700px;
+  margin-bottom:32px;
+}
+.hero h1 em{
+  color:var(--gold);
+  font-style:italic;
+  display:block;
+}
+
+.hero-tagline{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.15rem;
+  color:rgba(246,239,227,0.5);
+  position:relative;
+  z-index:1;
+  margin-bottom:56px;
+  max-width:480px;
+  line-height:1.6;
+}
+
+.hero-meta{
+  display:flex;
+  gap:40px;
+  position:relative;
+  z-index:1;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:32px;
+}
+.hero-meta-item .label{
+  font-family:var(--sans);
+  font-size:9px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:rgba(214,190,160,0.35);
+  display:block;
+  margin-bottom:4px;
+}
+.hero-meta-item .value{
+  font-family:var(--sans);
+  font-size:12px;
+  color:rgba(214,190,160,0.65);
+  font-weight:400;
+}
+
+/* ═══════════════════════════ SECTION ANATOMY ═══════════════════════════ */
+.section-wrap{
+  padding:100px 80px;
+  position:relative;
+  overflow:hidden;
+}
+.section-wrap.dark{
+  background:var(--mahogany);
+  color:var(--parchment);
+}
+.section-wrap.linen{background:var(--linen)}
+.section-wrap.cream{background:var(--cream)}
+.section-wrap.parchment{background:var(--parchment)}
+
+/* Giant watermark number */
+.section-watermark{
+  position:absolute;
+  top:-20px;right:-20px;
+  font-family:var(--serif);
+  font-size:22rem;
+  font-weight:700;
+  line-height:1;
+  color:rgba(192,90,42,0.06);
+  pointer-events:none;
+  user-select:none;
+  z-index:0;
+}
+.dark .section-watermark{color:rgba(201,146,42,0.05)}
+
+.section-inner{position:relative;z-index:1}
+
+.section-eyebrow{
+  font-family:var(--sans);
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--terracotta);
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.dark .section-eyebrow{color:var(--gold)}
+.section-eyebrow::after{
+  content:'';
+  display:block;
+  flex:0 0 32px;
+  height:1px;
+  background:currentColor;
+  opacity:0.4;
+}
+
+.section-title{
+  font-family:var(--serif);
+  font-size:clamp(2rem, 4vw, 3rem);
+  font-weight:400;
+  line-height:1.15;
+  letter-spacing:-0.5px;
+  color:var(--ink);
+  margin-bottom:16px;
+}
+.dark .section-title{color:var(--parchment)}
+
+.section-subtitle{
+  font-size:1rem;
+  color:var(--muted);
+  max-width:560px;
+  margin-bottom:56px;
+  font-weight:300;
+}
+.dark .section-subtitle{color:rgba(246,239,227,0.55)}
+
+/* ═══════════════════════════ POSITIONING SECTION ═══════════════════════════ */
+.pos-statement{
+  background:var(--espresso);
+  border-radius:2px;
+  padding:64px 72px;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:64px;
+}
+.pos-statement::before{
+  content:'\201C';
+  font-family:var(--serif);
+  font-size:18rem;
+  color:rgba(212,168,75,0.07);
+  position:absolute;
+  top:-60px;left:30px;
+  line-height:1;
+  pointer-events:none;
+}
+.pos-statement p{
+  font-family:var(--serif);
+  font-size:1.45rem;
+  font-style:italic;
+  line-height:1.75;
+  color:var(--parchment);
+  position:relative;
+  z-index:1;
+  max-width:680px;
+}
+.pos-label{
+  font-family:var(--sans);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-top:28px;
+  display:block;
+  position:relative;
+  z-index:1;
+}
+
+/* Story card motif */
+.story-card-motif{
+  position:absolute;
+  right:64px;bottom:40px;
+  width:160px;
+  background:var(--parchment);
+  border-radius:3px;
+  padding:20px;
+  transform:rotate(3deg);
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+}
+.story-card-motif .sc-label{
+  font-size:7px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--terracotta);
+  font-family:var(--sans);
+  display:block;
+  margin-bottom:10px;
+  border-bottom:1px solid var(--border);
+  padding-bottom:8px;
+}
+.story-card-motif .sc-name{
+  font-family:var(--serif);
+  font-size:14px;
+  font-weight:600;
+  color:var(--ink);
+  margin-bottom:4px;
+}
+.story-card-motif .sc-region{
+  font-size:9px;
+  color:var(--muted);
+  font-family:var(--sans);
+  margin-bottom:12px;
+  display:block;
+}
+.story-card-motif .sc-line{
+  height:4px;
+  border-radius:2px;
+  background:var(--linen);
+  margin-bottom:5px;
+}
+.story-card-motif .sc-line:last-child{width:60%}
+
+/* Pillars */
+.pillars{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:2px;
+  overflow:hidden;
+  margin-bottom:56px;
+}
+.pillar{
+  padding:36px 40px;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.pillar:nth-child(2n){border-right:none}
+.pillar:nth-child(3),.pillar:nth-child(4){border-bottom:none}
+.pillar-number{
+  font-family:var(--serif);
+  font-size:3rem;
+  font-style:italic;
+  color:rgba(192,90,42,0.12);
+  line-height:1;
+  position:absolute;
+  top:20px;right:24px;
+}
+.pillar-name{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--terracotta);
+  font-weight:600;
+  margin-bottom:14px;
+}
+.pillar p{font-size:0.9rem;color:var(--muted);line-height:1.6;margin:0}
+
+/* Voice cards */
+.voice-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:2px;
+  overflow:hidden;
+}
+.voice-card{
+  background:var(--cream);
+  padding:36px 32px;
+}
+.voice-card-icon{
+  font-size:1.6rem;
+  margin-bottom:16px;
+  display:block;
+}
+.voice-card h4{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--terracotta);
+  font-weight:600;
+  margin-bottom:12px;
+}
+.voice-card p{font-size:0.88rem;color:var(--muted);margin:0;line-height:1.65}
+
+/* ═══════════════════════════ COMPETITIVE TABLE ═══════════════════════════ */
+.comp-note{
+  background:rgba(201,146,42,0.1);
+  border-left:3px solid var(--gold);
+  padding:20px 28px;
+  font-size:0.9rem;
+  color:var(--parchment);
+  margin-bottom:40px;
+  border-radius:0 2px 2px 0;
+  line-height:1.65;
+}
+.comp-note strong{color:var(--gold)}
+
+.comp-wrap{overflow-x:auto;border-radius:2px;border:1px solid rgba(255,255,255,0.08)}
+table{width:100%;border-collapse:collapse;font-size:0.85rem}
+thead tr{background:rgba(0,0,0,0.3)}
+thead th{
+  padding:16px 20px;
+  text-align:left;
+  font-family:var(--sans);
+  font-size:9px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  font-weight:500;
+  color:rgba(246,239,227,0.45);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+thead th.ember-col{color:var(--gold);opacity:1}
+tbody tr{border-bottom:1px solid rgba(255,255,255,0.05)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,0.025)}
+tbody td{padding:14px 20px;vertical-align:middle;color:rgba(246,239,227,0.7)}
+tbody td:first-child{color:rgba(246,239,227,0.9);font-weight:500}
+tbody td.ember-col{background:rgba(212,168,75,0.06)}
+tr.hero-row td{background:rgba(212,168,75,0.09)}
+tr.hero-row td:first-child{color:var(--gold)}
+
+.badge{
+  display:inline-block;
+  padding:3px 10px;
+  border-radius:1px;
+  font-size:10px;
+  font-family:var(--sans);
+  font-weight:500;
+  letter-spacing:0.3px;
+}
+.badge-none{background:rgba(220,50,50,0.15);color:#ff8a80}
+.badge-partial{background:rgba(255,165,0,0.12);color:#ffb74d}
+.badge-strong{background:rgba(76,175,80,0.12);color:#81c784}
+.badge-gold{background:rgba(212,168,75,0.18);color:var(--gold);font-weight:600}
+.badge-opp{background:rgba(100,149,237,0.12);color:#90caf9}
+
+/* ═══════════════════════════ CALENDAR ═══════════════════════════ */
+.cal-header-note{
+  display:flex;gap:24px;
+  margin-bottom:48px;
+}
+.cal-platform-key{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;font-family:var(--sans);
+  color:rgba(246,239,227,0.55);
+}
+.cal-platform-key .dot{
+  width:8px;height:8px;border-radius:50%;
+  flex-shrink:0;
+}
+.dot-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.dot-li{background:#0077b5}
+
+.week-block{margin-bottom:56px}
+.week-label{
+  display:flex;align-items:baseline;gap:16px;
+  margin-bottom:24px;
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.week-num{
+  font-family:var(--serif);
+  font-size:3.5rem;
+  font-style:italic;
+  color:var(--gold);
+  line-height:1;
+  opacity:0.4;
+}
+.week-info{}
+.week-name{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  display:block;
+  margin-bottom:2px;
+}
+.week-theme{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.1rem;
+  color:rgba(246,239,227,0.6);
+}
+
+.posts-list{display:flex;flex-direction:column;gap:10px}
+.post-row{
+  display:grid;
+  grid-template-columns:120px 1fr auto;
+  align-items:start;
+  gap:20px;
+  padding:18px 24px;
+  background:rgba(255,255,255,0.03);
+  border-radius:2px;
+  border-left:2px solid transparent;
+  transition:background 0.15s;
+}
+.post-row:hover{background:rgba(255,255,255,0.055)}
+.post-row.ig{border-left-color:#bc1888}
+.post-row.li{border-left-color:#0077b5}
+
+.post-platform{
+  font-family:var(--sans);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:600;
+  padding-top:2px;
+}
+.post-row.ig .post-platform{color:#e1306c}
+.post-row.li .post-platform{color:#0077b5}
+
+.post-info .post-title{
+  font-family:var(--sans);
+  font-size:0.88rem;
+  font-weight:500;
+  color:rgba(246,239,227,0.9);
+  margin-bottom:4px;
+}
+.post-info .post-desc{
+  font-size:0.8rem;
+  color:rgba(246,239,227,0.45);
+  line-height:1.55;
+}
+
+.post-meta{
+  font-size:10px;
+  font-family:var(--sans);
+  color:rgba(246,239,227,0.3);
+  text-align:right;
+  white-space:nowrap;
+  padding-top:2px;
+}
+
+/* ═══════════════════════════ ACQUISITION ═══════════════════════════ */
+.strategy-list{display:flex;flex-direction:column;gap:0}
+.strategy{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:0;
+  border-bottom:1px solid var(--border);
+  padding:56px 0;
+}
+.strategy:first-child{padding-top:0}
+.strategy:last-child{border-bottom:none;padding-bottom:0}
+.strategy-num{
+  font-family:var(--serif);
+  font-size:6rem;
+  font-weight:700;
+  font-style:italic;
+  color:rgba(192,90,42,0.12);
+  line-height:1;
+  padding-top:4px;
+}
+.strategy-body{}
+.strategy-body h4{
+  font-family:var(--serif);
+  font-size:1.45rem;
+  font-weight:600;
+  color:var(--ink);
+  margin-bottom:16px;
+  line-height:1.3;
+  max-width:560px;
+}
+.strategy-body p{
+  font-size:0.92rem;
+  color:var(--muted);
+  line-height:1.75;
+  margin-bottom:12px;
+  max-width:600px;
+}
+.strategy-body strong{color:var(--body);font-weight:600}
+.why-box{
+  margin-top:20px;
+  padding:16px 20px;
+  background:rgba(192,90,42,0.07);
+  border-left:2px solid var(--terracotta);
+  border-radius:0 2px 2px 0;
+  font-size:0.84rem;
+  color:var(--terracotta);
+  font-weight:500;
+  max-width:560px;
+}
+
+/* ═══════════════════════════ QUICK WINS ═══════════════════════════ */
+.wins-list{display:flex;flex-direction:column;gap:2px}
+.win{
+  background:var(--cream);
+  padding:48px 64px 48px 80px;
+  position:relative;
+  border-bottom:1px solid var(--border);
+}
+.win:first-child{border-radius:2px 2px 0 0}
+.win:last-child{border-radius:0 0 2px 2px;border-bottom:none}
+.win-num{
+  position:absolute;
+  left:24px;top:48px;
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-style:italic;
+  color:var(--terracotta);
+  opacity:0.6;
+}
+.win h4{
+  font-family:var(--serif);
+  font-size:1.35rem;
+  font-weight:600;
+  color:var(--ink);
+  margin-bottom:12px;
+  max-width:580px;
+}
+.win>p{
+  font-size:0.92rem;
+  color:var(--muted);
+  max-width:580px;
+  margin-bottom:24px;
+  line-height:1.7;
+}
+.action-steps{list-style:none;padding:0;display:flex;flex-direction:column;gap:0}
+.action-steps li{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:1px dashed var(--mist);
+  font-size:0.88rem;
+  color:var(--body);
+}
+.action-steps li:last-child{border-bottom:none}
+.action-steps li::before{
+  content:counter(step);
+  counter-increment:step;
+  font-family:var(--serif);
+  font-size:11px;
+  font-style:italic;
+  color:var(--terracotta);
+  min-width:16px;
+  opacity:0.7;
+}
+.action-steps{counter-reset:step}
+.time-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:20px;
+  background:var(--linen);
+  border:1px solid var(--border);
+  border-radius:1px;
+  padding:6px 14px;
+  font-family:var(--sans);
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* ═══════════════════════════ METRICS ═══════════════════════════ */
+.metrics-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:2px;
+  overflow:hidden;
+  margin-bottom:64px;
+}
+.metric{
+  background:rgba(255,255,255,0.025);
+  padding:40px 36px;
+}
+.metric-val{
+  font-family:var(--serif);
+  font-size:3.2rem;
+  font-weight:700;
+  color:var(--gold);
+  line-height:1;
+  margin-bottom:8px;
+  letter-spacing:-1px;
+}
+.metric-label{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(246,239,227,0.5);
+  margin-bottom:10px;
+  font-weight:500;
+}
+.metric-note{
+  font-size:11px;
+  color:rgba(246,239,227,0.28);
+  font-style:italic;
+  font-family:var(--serif);
+  line-height:1.5;
+}
+
+.tracking-list{
+  display:flex;flex-direction:column;gap:0;
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:2px;overflow:hidden;
+}
+.tracking-item{
+  display:grid;grid-template-columns:180px 1fr;
+  gap:0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.tracking-item:last-child{border-bottom:none}
+.tracking-tool{
+  padding:18px 24px;
+  background:rgba(0,0,0,0.2);
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+  display:flex;align-items:center;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.tracking-desc{
+  padding:18px 24px;
+  font-size:0.87rem;
+  color:rgba(246,239,227,0.55);
+  line-height:1.6;
+}
+
+/* ═══════════════════════════ FOOTER ═══════════════════════════ */
+footer{
+  background:var(--espresso);
+  padding:48px 80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.footer-brand{
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-style:italic;
+  color:rgba(246,239,227,0.25);
+}
+.footer-brand em{color:rgba(212,168,75,0.45)}
+.footer-meta{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(246,239,227,0.18);
+  text-align:right;
+  line-height:1.8;
+}
+
+/* ═══════════════════════════ RESPONSIVE ═══════════════════════════ */
+@media(max-width:900px){
+  /* body is display:flex (row); stack it so the full-width sidebar
+     doesn't push the content column off-screen */
+  body{flex-direction:column}
+  .sidebar{
+    width:100%;height:auto;
+    position:relative;
+    flex-direction:row;
+    align-items:center;
+    padding:16px 24px;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .sidebar-brand{border-bottom:none;margin-bottom:0;padding:0;flex-shrink:0}
+  .sidebar-brand .sub{display:none}
+  .sidebar-nav{
+    flex-direction:row;flex:1;padding:0;gap:4px;flex-wrap:wrap;
+  }
+  .sidebar-nav a{padding:7px 10px;font-size:10px}
+  .sidebar-related{
+    border-top:none;
+    padding:0;
+    margin:0;
+    flex-shrink:0;
+  }
+  .sidebar-related .related-label{display:none}
+  .sidebar-related ul{flex-direction:row;gap:14px;flex-wrap:wrap}
+  .sidebar-related a{font-size:10px}
+  .sidebar-footer{display:none}
+  .content{margin-left:0}
+  .hero{padding:48px 32px 60px;min-height:70vh}
+  .section-wrap{padding:64px 32px}
+  .pos-statement{padding:40px 36px}
+  .story-card-motif{display:none}
+  .pillars{grid-template-columns:1fr}
+  .pillar:nth-child(2n){border-right:1px solid var(--border)}
+  .pillar:nth-child(3){border-bottom:1px solid var(--border)}
+  .voice-grid{grid-template-columns:1fr}
+  .strategy{grid-template-columns:60px 1fr;gap:0 16px}
+  .strategy-num{font-size:3.5rem}
+  .post-row{grid-template-columns:100px 1fr}
+  .post-meta{display:none}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .tracking-item{grid-template-columns:1fr}
+  .tracking-tool{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .win{padding:36px 32px 36px 56px}
+  footer{flex-direction:column;align-items:flex-start;padding:40px 32px}
+  .footer-meta{text-align:left}
+}
+@media(max-width:600px){
+  .metrics-grid{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .hero h1{font-size:2.8rem}
+  .hero-meta{flex-wrap:wrap;gap:24px}
+  .section-watermark{font-size:12rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <span class="wordmark">Ember &amp; <em>Origin</em></span>
+    <span class="sub">Marketing Action Plan</span>
+  </div>
+  <ul class="sidebar-nav">
+    <li><a href="#positioning"><span class="num">01</span>Positioning</a></li>
+    <li><a href="#competitive"><span class="num">02</span>Comp Gap</a></li>
+    <li><a href="#calendar"><span class="num">03</span>Calendar</a></li>
+    <li><a href="#acquisition"><span class="num">04</span>Acquisition</a></li>
+    <li><a href="#quickwins"><span class="num">05</span>Quick Wins</a></li>
+    <li><a href="#metrics"><span class="num">06</span>Metrics</a></li>
+  </ul>
+  <div class="sidebar-related">
+    <span class="related-label">Related pages</span>
+    <ul>
+      <li><a href="../ember-origin/index.html">Landing Page</a></li>
+      <li><a href="../competitive-analysis/index.html">Competitive Analysis</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-footer">
+    <p>"Single-origin,<br>small-batch,<br>roasted with intention."</p>
+  </div>
+</aside>
+
+<!-- ══════════════ MAIN CONTENT ══════════════ -->
+<div class="content">
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-plan-label">Marketing Action Plan · April 2026</div>
+  <h1>Ember<br>&amp; <em>Origin</em></h1>
+  <p class="hero-tagline">"Single-origin, small-batch, roasted with intention."</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="label">Business</span>
+      <span class="value">Ember &amp; Origin</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Audience</span>
+      <span class="value">Specialty coffee enthusiasts</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Budget</span>
+      <span class="value">Organic / zero paid</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Research base</span>
+      <span class="value">Blue Bottle · Stumptown · Counter Culture</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── 01 POSITIONING ── -->
+<section id="positioning" class="section-wrap parchment">
+  <div class="section-watermark">01</div>
+  <div class="section-inner">
+    <div class="section-eyebrow">Section 01</div>
+    <h2 class="section-title">Brand Positioning</h2>
+    <p class="section-subtitle">Where Ember &amp; Origin sits in the market, what it stands for, and how it speaks.</p>
+
+    <div class="pos-statement">
+      <p>For coffee enthusiasts who believe that what's in the cup is inseparable from who grew it, Ember &amp; Origin is the only specialty roaster that makes the farmer the hero of every bag — delivering single-origin, small-batch coffee alongside the story of the hands, land, and craft behind each roast.</p>
+      <span class="pos-label">Positioning Statement</span>
+
+      <div class="story-card-motif">
+        <span class="sc-label">Story Card — Lot #14</span>
+        <div class="sc-name">Ato Gemechu</div>
+        <span class="sc-region">Yirgacheffe, Ethiopia · 1,950m</span>
+        <div class="sc-line" style="width:100%"></div>
+        <div class="sc-line" style="width:85%"></div>
+        <div class="sc-line" style="width:70%"></div>
+        <div class="sc-line"></div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--terracotta);margin-bottom:24px;font-weight:600;">Brand Pillars</h3>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-number">I</div>
+        <div class="pillar-name">Human Provenance</div>
+        <p>Every bag carries a real name, a real farm, a real story. We don't sell origins — we introduce people.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">II</div>
+        <div class="pillar-name">Radical Transparency</div>
+        <p>Roast profiles, processing methods, and farmer economics — visible, not buried in a blog post.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">III</div>
+        <div class="pillar-name">Intentional Craft</div>
+        <p>Small-batch means we can say no to commodity. Every roast decision is deliberate, never scaled.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">IV</div>
+        <div class="pillar-name">Earned Trust</div>
+        <p>We build community through education and authenticity — not discounts and manufactured urgency.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--terracotta);margin-bottom:24px;font-weight:600;">Voice &amp; Tone</h3>
+    <div class="voice-grid">
+      <div class="voice-card">
+        <span class="voice-card-icon">✍️</span>
+        <h4>Written Voice</h4>
+        <p>Warm, curious, grounded. Knowledgeable without being precious. Writes like a friend who spent a season in Ethiopia learning from a cooperative — never a brand manager who studied a style guide.</p>
+      </div>
+      <div class="voice-card">
+        <span class="voice-card-icon">📸</span>
+        <h4>Visual Voice</h4>
+        <p>Earthy textures, natural light, hands-in-soil photography. The story card as a recurring visual motif. Restrained palette: ochre, terracotta, linen. No stock photography. No pristine minimalism.</p>
+      </div>
+      <div class="voice-card">
+        <span class="voice-card-icon">🚫</span>
+        <h4>Never Sound Like</h4>
+        <p>Blue Bottle's cold editorial silence, Counter Culture's promotion-first urgency, or Stumptown's retro-quirky irreverence. Ember &amp; Origin is warm, specific, and human — always.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 02 COMPETITIVE GAP ── -->
+<section id="competitive" class="section-wrap dark">
+  <div class="section-watermark">02</div>
+  <div class="section-inner">
+    <div class="section-eyebrow">Section 02</div>
+    <h2 class="section-title">Competitive Gap Analysis</h2>
+    <p class="section-subtitle">Where the three dominant specialty coffee DTC brands fall short — and where the white space lives.</p>
+
+    <div class="comp-note">
+      <strong>Core finding:</strong> None of the three competitors — Blue Bottle, Stumptown, or Counter Culture — lead with farmer identity or human provenance at the product level. Sustainability is claimed broadly but never personalized. The "story card" is Ember &amp; Origin's uncontested territory.
+    </div>
+
+    <div class="comp-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Blue Bottle</th>
+            <th>Stumptown</th>
+            <th>Counter Culture</th>
+            <th class="ember-col">Ember &amp; Origin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hero-row">
+            <td>Farmer storytelling</td>
+            <td><span class="badge badge-none">None</span></td>
+            <td><span class="badge badge-none">None</span></td>
+            <td><span class="badge badge-partial">Origin pages only</span></td>
+            <td class="ember-col"><span class="badge badge-gold">Every bag — story card</span></td>
+          </tr>
+          <tr>
+            <td>Subscription focus</td>
+            <td><span class="badge badge-strong">Central CTA</span></td>
+            <td><span class="badge badge-strong">Multi-category</span></td>
+            <td><span class="badge badge-partial">Secondary</span></td>
+            <td class="ember-col"><span class="badge badge-opp">Opportunity</span></td>
+          </tr>
+          <tr>
+            <td>Product discovery quiz</td>
+            <td><span class="badge badge-none">None</span></td>
+            <td><span class="badge badge-strong">Coffee Quiz</span></td>
+            <td><span class="badge badge-strong">Coffee Quiz</span></td>
+            <td class="ember-col"><span class="badge badge-opp">Build one</span></td>
+          </tr>
+          <tr>
+            <td>Promotions / discounts</td>
+            <td><span class="badge badge-none">Rare</span></td>
+            <td><span class="badge badge-partial">Occasional</span></td>
+            <td><span class="badge badge-strong">Prominent</span></td>
+            <td class="ember-col"><span class="badge badge-gold">Avoid — protect premium</span></td>
+          </tr>
+          <tr>
+            <td>Social proof</td>
+            <td><span class="badge badge-none">Minimal</span></td>
+            <td><span class="badge badge-partial">Moderate</span></td>
+            <td><span class="badge badge-strong">Homepage hero</span></td>
+            <td class="ember-col"><span class="badge badge-opp">Build via UGC</span></td>
+          </tr>
+          <tr class="hero-row">
+            <td>Human / farmer identity</td>
+            <td><span class="badge badge-none">None</span></td>
+            <td><span class="badge badge-none">None</span></td>
+            <td><span class="badge badge-none">None</span></td>
+            <td class="ember-col"><span class="badge badge-gold">Core differentiator</span></td>
+          </tr>
+          <tr>
+            <td>Loyalty program</td>
+            <td><span class="badge badge-strong">Membership</span></td>
+            <td><span class="badge badge-none">Not visible</span></td>
+            <td><span class="badge badge-strong">Earn Points</span></td>
+            <td class="ember-col"><span class="badge badge-opp">Future phase</span></td>
+          </tr>
+          <tr>
+            <td>In-shop education</td>
+            <td><span class="badge badge-partial">Separate guides</span></td>
+            <td><span class="badge badge-strong">Embedded long-form</span></td>
+            <td><span class="badge badge-strong">Embedded</span></td>
+            <td class="ember-col"><span class="badge badge-gold">Story cards + blog</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 CALENDAR ── -->
+<section id="calendar" class="section-wrap dark" style="background:var(--espresso)">
+  <div class="section-watermark">03</div>
+  <div class="section-inner">
+    <div class="section-eyebrow">Section 03</div>
+    <h2 class="section-title">4-Week Content Calendar</h2>
+    <p class="section-subtitle">Instagram + LinkedIn. Organic only. Built around the story card as the core content unit.</p>
+
+    <div class="cal-header-note">
+      <div class="cal-platform-key"><span class="dot dot-ig"></span>Instagram — 4 posts/week: storytelling, Reels, community</div>
+      <div class="cal-platform-key"><span class="dot dot-li"></span>LinkedIn — 2 posts/week: founder journey, B2B gifting, transparency</div>
+    </div>
+
+    <!-- WEEK 1 -->
+    <div class="week-block">
+      <div class="week-label">
+        <div class="week-num">01</div>
+        <div class="week-info">
+          <span class="week-name">Week One</span>
+          <span class="week-theme">"Meet the Farmer" — launch the story card series</span>
+        </div>
+      </div>
+      <div class="posts-list">
+        <div class="post-row ig">
+          <div class="post-platform">Instagram</div>
+          <div class="post-info">
+            <div class="post-title">Story Card Reveal</div>
+            <div class="post-desc">Flat-lay of bag + story card. Caption introduces Farmer #1 by name, region, and one human detail. "This is [Name]. He's been tending this plot since 1998..."</div>
+          </div>
+          <div class="post-meta">Carousel · Mon<br>#OriginStory</div>
+        </div>
+        <div class="post-row ig">
+          <div class="post-platform">Instagram Reel</div>
+          <div class="post-info">
+            <div class="post-title">30-sec: What's in a Story Card?</div>
+            <div class="post-desc">Hands-on walkthrough of the story card — farmer name, GPS coordinates, altitude, processing method, tasting notes. Show what other brands don't show.</div>
+          </div>
+          <div class="post-meta">Reel · Wed<br>Target 10K+ plays</div>
+        </div>
+        <div class="post-row ig">
+          <div class="post-platform">Instagram</div>
+          <div class="post-info">
+            <div class="post-title">"Do you know your farmer's name?"</div>
+            <div class="post-desc">Engagement post: "Your last bag of coffee — do you know the name of the person who grew it? We do." Comments drive algorithmic reach.</div>
+          </div>
+          <div class="post-meta">Single image · Fri</div>
+        </div>
+        <div class="post-row li">
+          <div class="post-platform">LinkedIn</div>
+          <div class="post-info">
+            <div class="post-title">Founder post: Why I put farmer names on bags</div>
+            <div class="post-desc">First-person story. Not a pitch — a values statement. What they saw on a sourcing trip that changed how they thought about labeling. ~300 words.</div>
+          </div>
+          <div class="post-meta">Text post · Tue</div>
+        </div>
+        <div class="post-row li">
+          <div class="post-platform">LinkedIn</div>
+          <div class="post-info">
+            <div class="post-title">The opacity problem in specialty coffee</div>
+            <div class="post-desc">Why "single origin" has become marketing language without accountability. Positions Ember &amp; Origin as the solution. Strong for B2B gifting leads.</div>
+          </div>
+          <div class="post-meta">Article · Thu<br>#EthicalSourcing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-block">
+      <div class="week-label">
+        <div class="week-num">02</div>
+        <div class="week-info">
+          <span class="week-name">Week Two</span>
+          <span class="week-theme">"Process &amp; Craft" — behind the roast</span>
+        </div>
+      </div>
+      <div class="posts-list">
+        <div class="post-row ig">
+          <div class="post-platform">Instagram Reel</div>
+          <div class="post-info">
+            <div class="post-title">Roast day: small-batch in real time</div>
+            <div class="post-desc">30–45 sec time-lapse or GRWM-style reel. Narrate the decisions: "We pulled this one at 204°C to preserve the floral notes..." Authentic over polished.</div>
+          </div>
+          <div class="post-meta">Reel · Mon<br>Behind-the-scenes</div>
+        </div>
+        <div class="post-row ig">
+          <div class="post-platform">Instagram</div>
+          <div class="post-info">
+            <div class="post-title">Roast profile breakdown carousel</div>
+            <div class="post-desc">5-slide carousel: Slide 1 = hero shot, Slides 2–4 = roast stages with temps + flavor notes, Slide 5 = what this means in your cup. Educates without lecturing.</div>
+          </div>
+          <div class="post-meta">Carousel · Wed<br>Save-worthy</div>
+        </div>
+        <div class="post-row ig">
+          <div class="post-platform">Instagram</div>
+          <div class="post-info">
+            <div class="post-title">UGC re-share + story card in the wild</div>
+            <div class="post-desc">Re-share a customer story card photo. If no UGC yet, post a staged unboxing showing someone reading the card for the first time. Add their reaction as the caption.</div>
+          </div>
+          <div class="post-meta">Single image · Fri<br>CTA: tag us</div>
+        </div>
+        <div class="post-row li">
+          <div class="post-platform">LinkedIn</div>
+          <div class="post-info">
+            <div class="post-title">What "small-batch" actually means (and what it doesn't)</div>
+            <div class="post-desc">Demystifies industry language. Builds authority with corporate buyers. Clear, jargon-free, ends with a soft CTA to DM for B2B gifting.</div>
+          </div>
+          <div class="post-meta">Text post · Tue</div>
+        </div>
+        <div class="post-row li">
+          <div class="post-platform">LinkedIn</div>
+          <div class="post-info">
+            <div class="post-title">Photo post: the roastery — "our entire team"</div>
+            <div class="post-desc">Humanize the brand at scale. 1–3 people in the roastery with a caption about the intentionality of staying small. Resonates deeply with SMB founders on LinkedIn.</div>
+          </div>
+          <div class="post-meta">Photo post · Thu</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week-block">
+      <div class="week-label">
+        <div class="week-num">03</div>
+        <div class="week-info">
+          <span class="week-name">Week Three</span>
+          <span class="week-theme">"Origin Journey" — put the audience in the region</span>
+        </div>
+      </div>
+      <div class="posts-list">
+        <div class="post-row ig">
+          <div class="post-platform">Instagram</div>
+          <div class="post-info">
+            <div class="post-title">Map carousel: from farm to your cup</div>
+            <div class="post-desc">6-slide carousel tracing the featured origin: Farm → processing station → export → roastery → door. Makes the abstract supply chain tangible and personal.</div>
+          </div>
+          <div class="post-meta">Carousel · Mon<br>Most shareable</div>
+        </div>
+        <div class="post-row ig">
+          <div class="post-platform">Instagram Reel</div>
+          <div class="post-info">
+            <div class="post-title">Region spotlight: 60 seconds on [current origin]</div>
+            <div class="post-desc">Voiceover reel using sourcing-trip footage or stills — altitude, climate, community. If no footage: still photos with motion + narration. Travel documentary format.</div>
+          </div>
+          <div class="post-meta">Reel · Wed<br>Highest viral potential</div>
+        </div>
+        <div class="post-row ig">
+          <div class="post-platform">Instagram</div>
+          <div class="post-info">
+            <div class="post-title">"What does [region] taste like?"</div>
+            <div class="post-desc">Tasting notes as sensory journey: "Close your eyes. First sip: bergamot. Then: dark cherry. Then a finish that lingers like warm stone." Pair with Stories poll.</div>
+          </div>
+          <div class="post-meta">Single image · Fri<br>Stories poll</div>
+        </div>
+        <div class="post-row li">
+          <div class="post-platform">LinkedIn</div>
+          <div class="post-info">
+            <div class="post-title">Why we pay above Fair Trade — and why it matters</div>
+            <div class="post-desc">Pricing philosophy with specific numbers if possible. Appeals to values-driven buyers and corporate sustainability leads. Strong for B2B and gifting pipeline.</div>
+          </div>
+          <div class="post-meta">Text post · Tue<br>#EthicalBusiness</div>
+        </div>
+        <div class="post-row li">
+          <div class="post-platform">LinkedIn</div>
+          <div class="post-info">
+            <div class="post-title">Client spotlight: companies we supply and why they switched</div>
+            <div class="post-desc">B2B client case study or "what our office clients tell us" with quotes. Plants the seed for corporate gifting inbound — the story card is the differentiator here too.</div>
+          </div>
+          <div class="post-meta">Post · Thu<br>B2B CTA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week-block">
+      <div class="week-label">
+        <div class="week-num">04</div>
+        <div class="week-info">
+          <span class="week-name">Week Four</span>
+          <span class="week-theme">"Community &amp; Conversion" — close the loop</span>
+        </div>
+      </div>
+      <div class="posts-list">
+        <div class="post-row ig">
+          <div class="post-platform">Instagram</div>
+          <div class="post-info">
+            <div class="post-title">UGC roundup: "Your story cards this month"</div>
+            <div class="post-desc">Compile 4–6 customer story card photos in a carousel. Caption: "You've been sharing your story cards — here's what landed in your cups this month." Celebrates community.</div>
+          </div>
+          <div class="post-meta">Carousel · Mon<br>Deepens loyalty</div>
+        </div>
+        <div class="post-row ig">
+          <div class="post-platform">Instagram Reel</div>
+          <div class="post-info">
+            <div class="post-title">"Month in review" — what we roasted, what we learned</div>
+            <div class="post-desc">30-sec founder-to-camera or montage reel recapping the month's origins. Builds parasocial loyalty. Honest, unscripted tone outperforms polished production.</div>
+          </div>
+          <div class="post-meta">Reel · Wed<br>Retention push</div>
+        </div>
+        <div class="post-row ig">
+          <div class="post-platform">Instagram</div>
+          <div class="post-info">
+            <div class="post-title">Subscription CTA: "Never miss a story"</div>
+            <div class="post-desc">First explicit conversion post of the month. Frame subscription as a relationship: "Each month, a new farmer. A new region. A new story. Delivered to your door."</div>
+          </div>
+          <div class="post-meta">Single image · Fri<br>Link in bio</div>
+        </div>
+        <div class="post-row li">
+          <div class="post-platform">LinkedIn</div>
+          <div class="post-info">
+            <div class="post-title">Month-end transparency report: what we sourced and why</div>
+            <div class="post-desc">200-word post listing this month's origins with one sentence on why each was selected. No marketing fluff. Radical transparency builds trust with high-intent B2B buyers.</div>
+          </div>
+          <div class="post-meta">Text post · Tue<br>Repurpose as email</div>
+        </div>
+        <div class="post-row li">
+          <div class="post-platform">LinkedIn</div>
+          <div class="post-info">
+            <div class="post-title">Next month preview: "What's coming to your cup"</div>
+            <div class="post-desc">Teaser for next month's featured origin. Builds anticipation, drives subscriptions, and creates a reason to follow. End with CTA to subscribe or DM for wholesale.</div>
+          </div>
+          <div class="post-meta">Post · Thu<br>Drives subs</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 04 ACQUISITION ── -->
+<section id="acquisition" class="section-wrap parchment">
+  <div class="section-watermark">04</div>
+  <div class="section-inner">
+    <div class="section-eyebrow">Section 04</div>
+    <h2 class="section-title">5 Acquisition Strategies</h2>
+    <p class="section-subtitle">Organic channels none of the three competitors are actively using — each uniquely enabled by the story card.</p>
+
+    <div class="strategy-list">
+
+      <div class="strategy">
+        <div class="strategy-num">1</div>
+        <div class="strategy-body">
+          <h4>Farmer-Tagged Product Pages — Make the Farmer the Hero SKU</h4>
+          <p>On every product listing, replace generic "origin notes" with a named farmer profile: photo, cooperative name, GPS coordinates, and a quote. This transforms a commodity SKU into a relationship. No competitor does this at the product level — Blue Bottle and Stumptown mention origins; none name the farmer on the product page itself.</p>
+          <p><strong>Execution:</strong> Add a "Meet [Farmer Name]" section below Add to Cart. Link to a full farmer profile page. Include a downloadable PDF version of the story card for gift buyers who want to print and include it.</p>
+          <div class="why-box">Why it converts: Specificity creates trust. A named farmer removes the abstraction that makes premium pricing feel arbitrary.</div>
+        </div>
+      </div>
+
+      <div class="strategy">
+        <div class="strategy-num">2</div>
+        <div class="strategy-body">
+          <h4>"Read Your Story Card" UGC Loop on Instagram</h4>
+          <p>Create a branded hashtag (#EmberStoryCard or #MyOriginStory) and actively seed it. Ask every customer to photograph their story card and share it. Repost everything. The story card is a built-in physical marketing asset — no competitor has an equivalent artifact that customers naturally want to photograph and share on social.</p>
+          <p><strong>Execution:</strong> Include a packing insert in every shipment with the hashtag and a one-line prompt ("Share your story."). Feature the best UGC weekly in Stories and monthly in a feed carousel. Offer 10% off next order for the best photo — targeted reward, not broad discounting.</p>
+          <div class="why-box">Why it works: UGC is the highest-trust acquisition channel for DTC. The story card gives customers something worth photographing — a physical object with meaning, not just another bag.</div>
+        </div>
+      </div>
+
+      <div class="strategy">
+        <div class="strategy-num">3</div>
+        <div class="strategy-body">
+          <h4>Corporate Gifting via LinkedIn Outbound</h4>
+          <p>Target HR leads, People Ops, and Office Managers at values-aligned companies (B Corps, tech, creative agencies) with a direct LinkedIn message: "We roast single-origin coffee and include a story card about the farmer with every bag. A lot of companies use us for employee gifting — happy to send a sample box." This is a zero-cost channel none of the three competitors actively use on LinkedIn.</p>
+          <p><strong>Execution:</strong> Identify 20 target companies per week. Send 10–15 personalised messages/day (within LinkedIn free limits). Create a simple "Corporate Gifting" landing page with a Typeform inquiry form. Offer a free sample kit to serious prospects — cost of goods vs. B2B LTV is extremely favourable.</p>
+          <div class="why-box">Why it converts: The story card is a uniquely gift-friendly product. Corporate buyers need something with a story to tell internally — Ember &amp; Origin provides that narrative out of the box, literally.</div>
+        </div>
+      </div>
+
+      <div class="strategy">
+        <div class="strategy-num">4</div>
+        <div class="strategy-body">
+          <h4>Specialty Coffee Community Seeding (Reddit, Discord, Facebook Groups)</h4>
+          <p>Blue Bottle, Stumptown, and Counter Culture are largely absent from specialty coffee communities (r/Coffee, r/espresso, specialty coffee Discord servers, Facebook groups like "Home Baristas"). Ember &amp; Origin's story card concept is natively interesting to this audience — it aligns perfectly with their obsession over provenance and process.</p>
+          <p><strong>Execution:</strong> Join 5–10 communities as a genuine participant, not a brand. Share sourcing stories, respond to origin questions, post educational content. Mention Ember &amp; Origin organically — never pitch directly. Offer AMAs on sourcing or roasting. Budget 6–8 weeks before community trust yields meaningful referrals.</p>
+          <div class="why-box">Why it converts: This is exactly where your customer lives. Trust built in a specialist community converts at dramatically higher rates than cold social ads.</div>
+        </div>
+      </div>
+
+      <div class="strategy">
+        <div class="strategy-num">5</div>
+        <div class="strategy-body">
+          <h4>Micro-Influencer Story Card Seeding (No Paid Sponsorships)</h4>
+          <p>Identify 20–30 micro-influencers (3K–50K followers) in specialty coffee, sustainable food, or the conscious consumer space. Send them a free bag with a story card — no contract, no ask. The story card is novel enough that many will post organically. Stumptown and Counter Culture do influencer marketing; none do it around a physical artifact that tells a human story.</p>
+          <p><strong>Execution:</strong> Use Instagram search + Modash free trial to identify accounts. DM with a personal note: "We think you'd appreciate what's on this story card." Ship the bag. Follow up once only. Track posts with brand mention alerts (Google Alerts, free tier). Build a private list of those who post for future collaboration.</p>
+          <div class="why-box">Why it works: The story card does the selling. A genuine post from a coffee enthusiast with 8K followers outperforms a paid post from a 500K account in this category every time.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── 05 QUICK WINS ── -->
+<section id="quickwins" class="section-wrap linen">
+  <div class="section-watermark">05</div>
+  <div class="section-inner">
+    <div class="section-eyebrow">Section 05</div>
+    <h2 class="section-title">3 Quick Wins for This Week</h2>
+    <p class="section-subtitle">Concrete actions, sequenced by impact, achievable before Friday.</p>
+
+    <div class="wins-list">
+      <div class="win">
+        <span class="win-num">01</span>
+        <h4>Publish Your First "Meet the Farmer" Instagram Post</h4>
+        <p>The story card series is your core differentiator — get it into the feed this week. One post. One farmer. One real name. This is the seed the entire content strategy grows from, and it costs nothing but time.</p>
+        <ul class="action-steps">
+          <li>Choose the farmer from your most recent or most interesting origin</li>
+          <li>Photograph the story card flat-lay with the bag (natural light, simple linen background)</li>
+          <li>Write a 150-word caption introducing the farmer by first name with one personal detail</li>
+          <li>Add 5–8 hashtags: #SpecialtyCoffee #SingleOrigin #CoffeeStory + 2 niche origin-specific ones</li>
+          <li>Post and respond to every comment within the first hour — algorithm priority window</li>
+        </ul>
+        <span class="time-chip">⏱ 2–3 hours total</span>
+      </div>
+
+      <div class="win">
+        <span class="win-num">02</span>
+        <h4>Launch the #EmberStoryCard UGC Hashtag</h4>
+        <p>Your story card is a physical marketing asset that customers will photograph if you simply ask them. Start collecting UGC now — it will be your most powerful social proof within 30 days and requires zero budget.</p>
+        <ul class="action-steps">
+          <li>Choose and verify your hashtag (search Instagram first to check for conflicts)</li>
+          <li>Add the hashtag + one-line prompt to your packing insert (create in Canva free if needed)</li>
+          <li>Post a Story asking your existing followers to reshare their story card photos</li>
+          <li>Email your last 20 customers directly with a personal ask to post and tag you</li>
+          <li>Pin the best response to your Instagram profile as a permanent Story Highlight</li>
+        </ul>
+        <span class="time-chip">⏱ 1–2 hours setup · ongoing</span>
+      </div>
+
+      <div class="win">
+        <span class="win-num">03</span>
+        <h4>Write and Publish a Founder LinkedIn Post</h4>
+        <p>LinkedIn organic reach for personal posts is at a multi-year high. A founder story — why you put farmer names on bags — will outperform any company page post and plant the seed for B2B gifting inbound. Write it this week while the research is fresh.</p>
+        <ul class="action-steps">
+          <li>Write 250–350 words, first person: what you saw, what changed, what you built</li>
+          <li>Do not use bullet points — LinkedIn's algorithm rewards paragraph prose for founder stories</li>
+          <li>End with a soft question: "Do you know the name of the person who grew your last cup?"</li>
+          <li>Post Tuesday or Wednesday 8–10am local time — peak B2B LinkedIn attention window</li>
+          <li>Reply to every comment within the first 2 hours — this is what drives further algorithmic distribution</li>
+        </ul>
+        <span class="time-chip">⏱ 1 hour to write · 30 min to engage post-publish</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 06 METRICS ── -->
+<section id="metrics" class="section-wrap dark" style="background:var(--dark-roast)">
+  <div class="section-watermark">06</div>
+  <div class="section-inner">
+    <div class="section-eyebrow">Section 06</div>
+    <h2 class="section-title">30-Day Success Metrics</h2>
+    <p class="section-subtitle">Organic-only benchmarks for month one of a content-led strategy. Calibrate to your current baseline.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-val">+20%</div>
+        <div class="metric-label">Instagram Followers</div>
+        <div class="metric-note">Driven by Reels + UGC loop seeding</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">5%+</div>
+        <div class="metric-label">Engagement Rate</div>
+        <div class="metric-note">Industry avg: 1–3%. Story-led content reliably outperforms.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">15+</div>
+        <div class="metric-label">UGC Story Card Posts</div>
+        <div class="metric-note">Via #EmberStoryCard hashtag across all platforms</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">3–5</div>
+        <div class="metric-label">B2B Gifting Inquiries</div>
+        <div class="metric-note">From LinkedIn outbound + founder post combined</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">10+</div>
+        <div class="metric-label">New Subscribers</div>
+        <div class="metric-note">Week 4 subscription CTA + community seeding</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">2+</div>
+        <div class="metric-label">Influencer Organic Posts</div>
+        <div class="metric-note">From no-contract story card seeding outreach</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:600;">Tracking Approach</h3>
+    <div class="tracking-list">
+      <div class="tracking-item">
+        <div class="tracking-tool">Instagram Insights</div>
+        <div class="tracking-desc">Check weekly, not daily. Track reach, saves, and profile visits — not just likes. Saves signal content worth bookmarking; profile visits signal purchase intent.</div>
+      </div>
+      <div class="tracking-item">
+        <div class="tracking-tool">LinkedIn Analytics</div>
+        <div class="tracking-desc">Focus on impressions and profile clicks from founder posts. A spike in profile clicks after a post = B2B curiosity. Follow up with those viewers proactively.</div>
+      </div>
+      <div class="tracking-item">
+        <div class="tracking-tool">UTM Parameters</div>
+        <div class="tracking-desc">Tag all link-in-bio traffic with UTM params to separate Instagram and LinkedIn referrals in Google Analytics or Shopify. Critical for attributing first purchases correctly.</div>
+      </div>
+      <div class="tracking-item">
+        <div class="tracking-tool">UGC Log</div>
+        <div class="tracking-desc">Maintain a spreadsheet of every story card post shared. Screenshot and save before they disappear. This archive becomes your social proof bank for future campaigns and website testimonials.</div>
+      </div>
+      <div class="tracking-item">
+        <div class="tracking-tool">B2B Pipeline</div>
+        <div class="tracking-desc">Track inquiries in Notion or a spreadsheet. Note the source for each: LinkedIn post, outbound DM, community referral, or organic inbound. Source data informs where to double down in month two.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">Ember &amp; <em>Origin</em></div>
+  <div class="footer-meta">
+    Marketing Action Plan · April 2026<br>
+    Based on competitive analysis of Blue Bottle, Stumptown &amp; Counter Culture
+  </div>
+</footer>
+
+</div><!-- /content -->
+</body>
+</html>
